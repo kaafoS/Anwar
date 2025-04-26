@@ -10,46 +10,76 @@
       margin: 0;
       padding: 0;
     }
-
     body {
-      min-height: 100vh;
+      height: 100vh;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      text-align: center;
-      color: #ff69b4;
-      background: linear-gradient(135deg, #0d0d1a, #001f4d);
-      font-family: 'Poppins', sans-serif;
+      background: #111;
+      color: white;
+      font-family: Arial, sans-serif;
       overflow: hidden;
+      position: relative;
     }
-
-    h1 {
-      font-size: 6rem;
-      font-weight: 800;
-      background: linear-gradient(90deg, #ff00cc, #3333ff);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      animation: pulse 2s infinite;
-    }
-
-    .footer {
-      margin-top: 50px;
+    .button-container {
       text-align: center;
-      color: #ffe600;
-      font-size: 1rem;
-      opacity: 0.8;
+      animation: moveAround 1s infinite alternate ease-in-out;
     }
-
-    @keyframes pulse {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.05); }
-      100% { transform: scale(1); }
+    #myButton {
+      padding: 15px 30px;
+      font-size: 18px;
+      background-color: #555;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: not-allowed;
+      opacity: 0.5;
+      transition: all 0.3s ease;
+    }
+    #myButton.enabled {
+      background-color: #dac400;
+      cursor: pointer;
+      opacity: 1;
+    }
+    .footer {
+      text-align: center;
+      color: #dac400;
+      font-size: 14px;
+      position: absolute;
+      bottom: 10px;
+      width: 100%;
+    }
+    @keyframes moveAround {
+      0% { transform: translate(0px, 0px); }
+      25% { transform: translate(10px, -10px); }
+      50% { transform: translate(-10px, 10px); }
+      75% { transform: translate(10px, 10px); }
+      100% { transform: translate(-10px, -10px); }
     }
   </style>
 </head>
 <body>
-  <h1>BIG LOVE ❤️</h1>
+
+  <div class="button-container" id="buttonContainer">
+    <input type="button" id="myButton" value="Dght hna" onclick="window.location.href='main.html'" disabled>
+  </div>
 
   <div class="footer">
     Powered by Anwar © 2025
+  </div>
+
+  <script>
+    const btn = document.getElementById('myButton');
+    const container = document.getElementById('buttonContainer');
+
+    setTimeout(() => {
+      container.style.animation = 'none'; 
+      container.style.transform = 'translate(0, 0)'; 
+      btn.disabled = false;
+      btn.classList.add('enabled');
+    }, 5000);
+  </script>
+
+</body>
+</html>
